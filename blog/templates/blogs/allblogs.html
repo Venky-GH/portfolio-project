@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-	{% load staticfiles %}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
@@ -46,50 +45,18 @@
 		</div>
 	</header>
 
-	<main role="main">
-
-		<section class="jumbotron text-center">
-			<div class="container">
-				<h1 class="jumbotron-heading">Album example</h1>
-				<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-				<p>
-					<a href="{% static 'resume.pdf' %}" class="btn btn-primary my-2">Resume</a>
-					<a href="{% static 'venky.jpg' %}" class="btn btn-secondary my-2">Photo</a>
-				</p>
-			</div>
-		</section>
-
-		<div class="album py-5 bg-light">
-			<div class="container">
-
-				<div class="row">
-
-					{% for job in jobs.all %}
-					<div class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<img class="card-img-top" src="{{ job.image.url }}" />
-							<div class="card-body">
-								<p class="card-text">{{ job.summary }}</p>
-							</div>
-						</div>
-					</div>
-					{% endfor %}
-
-				</div>
-			</div>
-		</div>
-
-	</main>
-
-	<footer class="text-muted">
-		<div class="container">
-			<p class="float-right">
-				<a href="#">Back to top</a>
-			</p>
-			<p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-			<p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-		</div>
-	</footer>
+	<div class="container">
+		{% for blog in blogs.all %}
+		<h1><a href="{% url 'details' blog.id %}">{{ blog.title }}</a></h1>
+		<br>
+		{{ blog.pub_date }}
+		<br>
+		<img class="image-fluid" src="{{ blog.image.url }}" height="10%" width="20%" />
+		<br>
+		{{ blog.summary }} ....
+		<br><br>
+		{% endfor %}
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
